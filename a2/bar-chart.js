@@ -42,22 +42,22 @@ function draw(){
 
     fill(75, 156, 211);
     //making the bar charts finally
-    for(let temp = 1; temp < ind_values.length; temp++){
-        let raw = data.findRow(ind_values[temp - 1], 'Industry').get("Valuation");
+    for(let ind_iter = 1; ind_iter < ind_values.length; ind_iter++){
+        let raw = data.findRow(ind_values[ind_iter - 1], 'Industry').get("Valuation");
         let temp_val = int(raw.replace("$", "").replace("B", ""));
 
-        let barY = 10 + (temp * 40) - 20;
-        let barW = 10 + Math.log2(temp_val) * 70;
+        let barY = 10 + (ind_iter * 40) - 20;       //positioning according to the axis
+        let barX = 10 + Math.log2(temp_val) * 70;   
 
         fill(75, 156, 211);
-        rect(200, barY, barW, 40);          // bar drawing
+        rect(200, barY, barX, 40);          // bar drawing
 
-        if (mouseX > 200 && mouseX < 200 + barW &&    // interactive part
+        if (mouseX > 200 && mouseX < 200 + barX &&    // interactive part
             mouseY > barY && mouseY < barY + 40) {
             fill(253, 170, 72);
             rect(mouseX - 5, mouseY - 20, 240, 18);
             fill(0);
-            text(`${ind_values[temp-1]}: $${temp_val}B`, mouseX + 10, mouseY - 5);
+            text(`${ind_values[ind_iter-1]}: $${temp_val}B`, mouseX + 10, mouseY - 5);
         }
     }
 
