@@ -1,0 +1,200 @@
+dataset,type,id,name,group,source,target
+1,node,265,"Logan Junior Chef",F,,
+1,node,518,"McDonald's",F,,
+1,node,67,"David Chang",F,,
+1,node,340,"Eric Ripert",F,,
+1,node,90,"Scott Conant",F,,
+1,node,56,"Alex Guarnaschelli",F,,
+1,node,70,"Chef Daniel Boulud",F,,
+1,node,611,"Robin Miller",F,,
+1,node,89,"Chef Kent Graham",F,,
+1,node,288,"Tom Colicchio",F,,
+1,node,505,"René Redzepi",F,,
+1,node,498,"Dani García",F,,
+1,node,317,"Jacques Pépin",F,,
+1,node,182,"Bobby Flay",F,,
+1,node,217,"Marcus Samuelsson",F,,
+1,node,229,"Chef Jet Tila",F,,
+1,node,87,"Geoffrey Zakarian",F,,
+1,node,389,"Emily Ellyn",F,,
+1,node,198,"Chef Elizabeth Falkner",F,,
+1,node,524,"McDonald's",F,,
+1,edge,,,,265,265
+1,edge,,,,67,265
+1,edge,,,,265,340
+1,edge,,,,90,265
+1,edge,,,,56,265
+1,edge,,,,70,265
+1,edge,,,,265,611
+1,edge,,,,265,288
+1,edge,,,,265,505
+1,edge,,,,265,317
+1,edge,,,,182,265
+1,edge,,,,217,265
+1,edge,,,,229,265
+1,edge,,,,87,265
+1,edge,,,,198,265
+1,edge,,,,67,340
+1,edge,,,,67,90
+1,edge,,,,90,340
+1,edge,,,,56,67
+1,edge,,,,67,70
+1,edge,,,,67,611
+1,edge,,,,56,340
+1,edge,,,,70,340
+1,edge,,,,340,611
+1,edge,,,,67,89
+1,edge,,,,56,90
+1,edge,,,,70,90
+1,edge,,,,89,340
+1,edge,,,,90,611
+1,edge,,,,56,70
+1,edge,,,,56,611
+1,edge,,,,70,611
+1,edge,,,,89,90
+1,edge,,,,67,288
+1,edge,,,,288,340
+1,edge,,,,67,505
+1,edge,,,,56,89
+1,edge,,,,70,89
+1,edge,,,,340,505
+1,edge,,,,67,498
+1,edge,,,,67,317
+1,edge,,,,340,498
+1,edge,,,,518,524
+1,edge,,,,67,229
+1,edge,,,,317,340
+1,edge,,,,67,389
+1,edge,,,,90,505
+1,edge,,,,229,340
+1,edge,,,,67,198
+1,edge,,,,87,340
+1,edge,,,,70,288
+1,edge,,,,198,340
+1,edge,,,,288,611
+1,edge,,,,90,317
+1,edge,,,,56,505
+1,edge,,,,70,505
+1,edge,,,,90,182
+1,edge,,,,90,229
+1,edge,,,,90,217
+1,edge,,,,505,611
+1,edge,,,,87,90
+1,edge,,,,90,389
+1,edge,,,,70,498
+1,edge,,,,89,288
+1,edge,,,,90,198
+1,edge,,,,70,317
+1,edge,,,,317,611
+2,node,0,Member 0,A,,
+2,node,1,Member 1,A,,
+2,node,2,Member 2,A,,
+2,node,3,Member 3,A,,
+2,node,4,Member 4,A,,
+2,node,5,Member 5,A,,
+2,node,6,Member 6,A,,
+2,node,7,Member 7,A,,
+2,node,8,Member 8,B,,
+2,node,9,Member 9,B,,
+2,node,10,Member 10,A,,
+2,node,11,Member 11,A,,
+2,node,12,Member 12,A,,
+2,node,13,Member 13,A,,
+2,node,14,Member 14,B,,
+2,node,15,Member 15,B,,
+2,node,16,Member 16,A,,
+2,node,17,Member 17,A,,
+2,node,18,Member 18,B,,
+2,node,19,Member 19,A,,
+2,node,20,Member 20,B,,
+2,node,21,Member 21,A,,
+2,node,22,Member 22,B,,
+2,node,23,Member 23,B,,
+2,node,24,Member 24,B,,
+2,node,25,Member 25,B,,
+2,node,26,Member 26,B,,
+2,node,27,Member 27,B,,
+2,node,28,Member 28,B,,
+2,node,29,Member 29,B,,
+2,node,30,Member 30,B,,
+2,node,31,Member 31,B,,
+2,node,32,Member 32,B,,
+2,node,33,Member 33,B,,
+2,edge,,,,0,1
+2,edge,,,,0,2
+2,edge,,,,0,3
+2,edge,,,,0,4
+2,edge,,,,0,5
+2,edge,,,,0,6
+2,edge,,,,0,7
+2,edge,,,,0,8
+2,edge,,,,0,10
+2,edge,,,,0,11
+2,edge,,,,0,12
+2,edge,,,,0,13
+2,edge,,,,0,17
+2,edge,,,,0,19
+2,edge,,,,0,21
+2,edge,,,,0,31
+2,edge,,,,1,2
+2,edge,,,,1,3
+2,edge,,,,1,7
+2,edge,,,,1,13
+2,edge,,,,1,17
+2,edge,,,,1,19
+2,edge,,,,1,21
+2,edge,,,,1,30
+2,edge,,,,2,3
+2,edge,,,,2,7
+2,edge,,,,2,8
+2,edge,,,,2,9
+2,edge,,,,2,13
+2,edge,,,,2,27
+2,edge,,,,2,28
+2,edge,,,,2,32
+2,edge,,,,3,7
+2,edge,,,,3,12
+2,edge,,,,3,13
+2,edge,,,,4,6
+2,edge,,,,4,10
+2,edge,,,,5,6
+2,edge,,,,5,10
+2,edge,,,,5,16
+2,edge,,,,6,16
+2,edge,,,,8,30
+2,edge,,,,8,32
+2,edge,,,,8,33
+2,edge,,,,9,33
+2,edge,,,,13,33
+2,edge,,,,14,32
+2,edge,,,,14,33
+2,edge,,,,15,32
+2,edge,,,,15,33
+2,edge,,,,18,32
+2,edge,,,,18,33
+2,edge,,,,19,33
+2,edge,,,,20,32
+2,edge,,,,20,33
+2,edge,,,,22,32
+2,edge,,,,22,33
+2,edge,,,,23,25
+2,edge,,,,23,27
+2,edge,,,,23,29
+2,edge,,,,23,32
+2,edge,,,,23,33
+2,edge,,,,24,25
+2,edge,,,,24,27
+2,edge,,,,24,31
+2,edge,,,,25,31
+2,edge,,,,26,29
+2,edge,,,,26,33
+2,edge,,,,27,33
+2,edge,,,,28,31
+2,edge,,,,28,33
+2,edge,,,,29,32
+2,edge,,,,29,33
+2,edge,,,,30,32
+2,edge,,,,30,33
+2,edge,,,,31,32
+2,edge,,,,31,33
+2,edge,,,,32,33

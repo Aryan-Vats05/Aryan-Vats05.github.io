@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Edge Bundling — FB Food Pages</title>
+        <style>
+            body { font-family: sans-serif; }
+            #controls { margin: 10px 0 0 20px; }
+            label { font-size: 14px; }
+            input[type=range] { width: 200px; vertical-align: middle; }
+        </style>
+    </head>
+    <body>
+        <h1><b>Radial Edge Bundling — Facebook Food Pages Network</b></h1>
+        <p>Data: Ryan A. Rossi and Nesreen K. Ahmed, "The Network Data Repository with Interactive Graph Analytics and Visualization," AAAI, 2015. <a href="https://networkrepository.com">networkrepository.com</a></p>
+        <div id="controls">
+            <label>Bundling Tension: <input type="range" id="tension-slider" min="0" max="1" step="0.01" value="0.85"> <span id="tension-value">0.85</span></label>
+        </div>
+        <div id="chart-container"></div>
+        <script src="https://d3js.org/d3.v7.min.js"></script>
+        <script src="bundle.js"></script>
+    </body>
+</html>
