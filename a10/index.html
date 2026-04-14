@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>A10 Chart Literacy | Aryan Vats</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 960px;
+            margin: 40px auto;
+            padding: 0 20px;
+            color: #222;
+            line-height: 1.6;
+        }
+        h1 { font-size: 1.4rem; margin-bottom: 4px; }
+        h2 { font-size: 1.1rem; margin-top: 48px; border-bottom: 1px solid #ccc; padding-bottom: 6px; }
+        h3 { font-size: 1rem; margin-top: 24px; }
+        p  { max-width: 720px; }
+        .grade { background: #1e2a38; color: #fff; padding: 8px 14px; font-size: 13px; margin-bottom: 20px; display: inline-block; }
+        .chart-box { border: 1px solid #ddd; padding: 16px; margin: 16px 0; background: #fafafa; }
+        .side-by-side { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        table { border-collapse: collapse; font-size: 13px; margin: 12px 0; }
+        table th { background: #1e2a38; color: #fff; padding: 6px 12px; text-align: left; }
+        table td { padding: 6px 12px; border-bottom: 1px solid #eee; }
+        td.changed { background: #fff3cd; font-weight: bold; }
+        .note { background: #fff8e1; border-left: 3px solid #f0ad4e; padding: 10px 14px; margin: 12px 0; font-size: 14px; max-width: 720px; }
+        .manip { background: #fff0f0; border-left: 3px solid #c0392b; padding: 10px 14px; margin: 12px 0; font-size: 14px; max-width: 720px; }
+        #tooltip { position: fixed; background: rgba(0,0,0,0.8); color: #fff; padding: 7px 11px; font-size: 12px; border-radius: 3px; pointer-events: none; display: none; z-index: 999; }
+        .axis text { font-size: 11px; font-family: Arial, sans-serif; }
+        .grid-line { stroke: #eee; stroke-width: 1; }
+        button { padding: 8px 20px; cursor: pointer; font-size: 13px; border: none; color: #fff; background: #c0392b; border-radius: 3px; margin: 8px 0; }
+    </style>
+</head>
+<body>
+
+<div class="grade">Submitting for: A (95) &nbsp;|&nbsp; CS 360 &nbsp;|&nbsp; Aryan Vats</div>
+
+<h1>The Real relation between Screen time and Depression</h1>
+<p style="color:#888; font-size:13px;">A Chart Literacy &amp; Misleading Visualization Project</p>
+
+
+<h2>The Misleading Narrative</h2>
+
+
+<p>Whenever there is a discussion about teen mental health problems, almost every time social media and smartphones
+are associated as the primary reason. However, the data begs to differ from this opinion</p>
+
+<p>The data does show that teen sadness went up over this period. But a rise in sadness and screen time being the cause of that rise are two very different things. The charts above are designed to make it look like there's an obvious link, and the sections below show how that gets done.</p>
+
+<figure style="max-width:640px; margin:16px 0;">
+    <img src="images/fig1.jpg" alt="Dual-axis line chart: screen time and teen sadness, 2008-2022" style="max-width:100%; display:block; border:1px solid #ddd;">
+    <figcaption style="font-size:12px; color:#666; margin-top:6px;"><em>Figure 1. Daily screen time (hrs) and teen sadness rate (%), 2008–2022. Source: CDC YRBSS, 2023; Common Sense Media Annual Census.</em></figcaption>
+</figure>
+
+<p>A 2019 study by Orben and Przybylski in Nature Human Behaviour found something worth knowing about. They analyzed over 355,000 teenagers and the effect size of social media on teen wellbeing came out roughly the same as the effect of eating potatoes. That's not a metaphor, that's the actual result. The study got picked up for a few days and then got ignored, because "screen time is barely a factor" doesn't get the same traction as "social media is destroying a generation."</p>
+
+<p>Another issue is how screen time even gets measured. It's mostly self-reported, meaning teenagers are asked to estimate their own usage. When that gets compared to actual phone logs, people overestimate by 30 to 40 percent on average. That means the x-axis on basically all of these studies is potentially wrong by a third. A regression line on bad input is still a bad regression line, regardless of how tight it looks.</p>
+
+<figure style="max-width:640px; margin:16px 0;">
+    <img src="images/fig2.jpg" alt="Scatter plot with regression line: screen time vs teen sadness by year" style="max-width:100%; display:block; border:1px solid #ddd;">
+    <figcaption style="font-size:12px; color:#666; margin-top:6px;"><em>Figure 2. Screen time vs. teen sadness across survey years, with regression line (R&sup2; = 0.61). Source: CDC YRBSS; National Youth Psychology Consortium, 2022.</em></figcaption>
+</figure>
+
+<p>The gender split in Figure 3 is the one thing in this dataset that's harder to argue away. Female sadness went from 34% to 57% between 2008 and 2022, a 23 point jump. Male rates went up about 9 points over the same stretch. Something is clearly going on differently for girls. Whether that's social media, image-based platforms, cyberbullying, or just differences in how mental health gets reported, the data doesn't say. Jumping from "these two things both went up" to "one caused the other" and building policy around that is a pretty big leap.</p>
+
+<figure style="max-width:640px; margin:16px 0;">
+    <img src="images/fig3.jpg" alt="Two-line chart: teen sadness by gender, 2008-2022" style="max-width:100%; display:block; border:1px solid #ddd;">
+    <figcaption style="font-size:12px; color:#666; margin-top:6px;"><em>Figure 3. Teen sadness by gender, 2008–2022. Source: CDC YRBSS; National Youth Wellbeing Index, Cycle 4.</em></figcaption>
+</figure>
+
+<p style="font-size:12px; color:#888;"><strong>Sources:</strong> CDC Youth Risk Behavior Survey, 2023. Common Sense Media Census, 2021. Orben &amp; Przybylski (2019), Nature Human Behaviour. National Youth Wellbeing Index, Cycle 4 [fabricated].</p>
+
+
+<h2>Deceptive Chart (D3)</h2>
+<p>Built from the modified dataset with 5 manipulation techniques applied. Hover over any data point to see the values.</p>
+
+<div class="chart-box">
+    <div style="font-weight:bold; color:#c0392b; margin-bottom:8px; font-size:14px;">Skyrocketing Screen Time Linked to Teen Mental Health Crisis (2014–2022)</div>
+    <div id="deceptive-chart"></div>
+    <div style="font-size:11px; color:#999; margin-top:6px;">Data: CDC YRBSS (modified); Common Sense Media Census</div>
+</div>
+
+<div class="manip">
+    <strong>Manipulation techniques:</strong><br>
+    1. <b>Truncated y axes</b>: sadness axis starts at 30%, not 0. Makes an 8 point rise look like near doubling.<br>
+    2. <b>Synchronized dual axis scaling</b>: scales are chosen so both lines visually overlap, implying tight causation.<br>
+    3. <b>Cherry picked time window</b>: starts at 2014, hiding the flat 2008 to 2014 period that weakens the trend.<br>
+    4. <b>Causal title</b>: "Linked to" implies causation from correlational data.<br>
+    5. <b>Alarming colors</b>: red and orange prime the reader toward danger before they read a single number.
+</div>
+
+
+<h2>Ethical Chart (D3)</h2>
+<p>Same dataset and chart type as above, but with zero-baseline axes, the full 2008 to 2022 range, independently scaled axes, and neutral colors.</p>
+
+<div class="chart-box">
+    <div style="font-weight:bold; color:#2980b9; margin-bottom:8px; font-size:14px;">Social Media Screen Time and Teen Sadness Rates, 2008–2022 (Correlation Only)</div>
+    <div id="ethical-chart"></div>
+    <div style="font-size:11px; color:#999; margin-top:6px;">Data: CDC YRBSS (modified); Common Sense Media Census</div>
+</div>
+
+
+<h2>Side-by-Side Comparison</h2>
+<p>Same data, same chart type. Only the visualization choices differ. Use the toggle to animate between the two framings.</p>
+
+<div class="side-by-side">
+    <div>
+        <p style="font-size:12px; color:#c0392b; font-weight:bold; margin-bottom:4px;">DECEPTIVE</p>
+        <div class="chart-box" style="padding:10px;"><div id="compare-dec"></div></div>
+    </div>
+    <div>
+        <p style="font-size:12px; color:#2980b9; font-weight:bold; margin-bottom:4px;">ETHICAL</p>
+        <div class="chart-box" style="padding:10px;"><div id="compare-eth"></div></div>
+    </div>
+</div>
+
+<button id="toggle-btn">Switch to Ethical View</button>
+<div class="chart-box"><div id="toggle-chart"></div></div>
+
+
+<h2>Manipulation Analysis</h2>
+
+<p>Starting the y axis at 30 instead of zero is the simplest thing in the deceptive chart and probably the most effective. A move from 32% to 40.8% is real but not extreme. With the axis cut at 30, that same move takes up nearly the full height of the chart and looks like the value almost doubled. Nobody reads the tick marks, they read the slope. That's all this trick is counting on.</p>
+
+<p>The dual axis setup is trickier. When two variables are on the same chart with separate axes, you can control how much they visually track each other just by adjusting the ranges. The sadness axis here goes from 30 to 43 and screen time from 6 to 10.2. Those numbers weren't chosen based on the data, they were chosen because they make both lines ride close together. The actual R-squared is 0.61, so 39% of the variance goes unexplained. You wouldn't know that from how aligned the lines look in the deceptive version.</p>
+
+<p>Cutting the x axis to start at 2014 is probably the biggest editorial decision in the deceptive chart. From 2014 to 2022 both variables go up together and it looks like a clean pattern. But the full data goes back to 2008, and from 2008 to 2014 sadness barely moves while screen time is already climbing fast. That six year gap where the supposed cause is rising but the effect isn't is pretty damaging to the causal story. Starting at 2014 makes that gap disappear entirely.</p>
+
+<p>The two charts tell completely different stories from the same numbers. The deceptive version reads like a warning about a crisis with an obvious culprit. The ethical version reads like two things that went up over 14 years with some correlation between them. The data modifications add to this. Bumping the 2010 sadness score from 28.5 to 32.1 raised the baseline, cutting the total apparent rise from 15.7 points down to 8.7. Flattening 2018 and 2022 pushes the trend down further. The modifications here were meant to make the overall increase look smaller, so the skeptical argument looks more reasonable. The deception in this project is actually downplaying the trend, not exaggerating it.</p>
+
+
+<h2>Chart Literacy Checklist</h2>
+
+<ol style="max-width:700px; line-height:2.2;">
+    <li><strong>Does the y axis start at zero?</strong> If not, ask whether that inflates or shrinks the apparent change.</li>
+    <li><strong>Are both axes labeled with units?</strong> Unlabeled axes, especially on dual axis charts, are a common place to hide scale manipulation.</li>
+    <li><strong>What time range is shown, and was it cherry picked?</strong> Ask what the trend looks like over a longer or shorter window before the chart starts.</li>
+    <li><strong>Is correlation being presented as causation?</strong> Watch for "linked to," "drives," "leads to" in titles on data that is purely correlational.</li>
+    <li><strong>What is the sample and how was it collected?</strong> Self reported surveys and opt in studies introduce predictable bias. Check the methodology.</li>
+    <li><strong>Are error bars or confidence intervals shown?</strong> If uncertainty is missing, the author probably wants you to feel more confident than the data supports.</li>
+    <li><strong>AI red flag: Is the source vague or unverifiable?</strong> "Studies show" or citations with no DOI, no year, or no named institution may indicate hallucinated data.</li>
+    <li><strong>AI red flag: Are the numbers suspiciously clean or perfectly on trend?</strong> Real data is noisy. Smooth curves with round numbers and no variance are a sign the data was generated, not measured.</li>
+</ol>
+
+
+<h2>Real-World Misleading Chart Analysis</h2>
+
+<p>The chart on the left appeared in a 2014 Reuters graphic on Florida gun deaths after the Stand Your Ground law passed. It's one of the more well-known examples of an inverted axis being used to flip what the data actually shows.</p>
+
+<div class="side-by-side" style="align-items:start;">
+    <div>
+        <p style="font-size:12px; font-weight:bold;">Original (Reuters, 2014)</p>
+        <img src="images/florida_original.jpg" alt="Original Reuters Florida gun deaths chart with inverted y-axis, 2014" style="max-width:100%; display:block; border:1px solid #ddd;">
+        <p style="font-size:12px; color:#666; margin-top:6px;"><em>Y axis is inverted, 0 at top and around 800 at bottom. Deaths look like they dropped after Stand Your Ground (2005) when they actually rose. Source: Reuters Graphics / FDLE data.</em></p>
+    </div>
+    <div>
+        <p style="font-size:12px; font-weight:bold; color:#16a085;">Ethical D3 Recreation</p>
+        <div class="chart-box" style="padding:10px;"><div id="florida-chart"></div></div>
+        <p style="font-size:12px; color:#666; margin-top:6px;"><em>Proper y axis (0 at bottom), area chart, vertical reference line at 2005. Deaths clearly rose after the law, the opposite of what the original implied.</em></p>
+    </div>
+</div>
+
+<p>In the original Reuters chart the y axis was flipped, zero at the top and around 800 at the bottom. That made gun deaths look like they dropped after Stand Your Ground passed in 2005 when they actually went up. The D3 version above uses a normal axis so the trend is readable without having to mentally reverse the scale. The vertical line at 2005 makes the before and after comparison obvious.</p>
+
+<p style="font-size:12px; color:#888;"><em>Citation: Reuters Graphics (2014). Florida gun deaths. Data source: Florida Department of Law Enforcement (FDLE) Uniform Crime Reports, 2000–2014.</em></p>
+
+
+<h2>Dataset Documentation</h2>
+
+<p><strong>What this data represents:</strong> Percentage of U.S. high school students reporting persistent sadness or hopelessness (CDC Youth Risk Behavior Survey, biennial) and average daily screen time in hours for teens ages 13–18 (Common Sense Media Census). Data spans 2008–2022.</p>
+
+<div class="side-by-side">
+    <div>
+        <h3>Original Data (original_data.csv)</h3>
+        <table>
+            <tr><th>Year</th><th>Sadness %</th><th>Screen hrs/day</th></tr>
+            <tr><td>2008</td><td>26.4</td><td>3.8</td></tr>
+            <tr><td>2010</td><td>28.5</td><td>4.4</td></tr>
+            <tr><td>2012</td><td>29.1</td><td>5.2</td></tr>
+            <tr><td>2014</td><td>30.0</td><td>6.1</td></tr>
+            <tr><td>2016</td><td>32.8</td><td>7.2</td></tr>
+            <tr><td>2018</td><td>36.7</td><td>7.7</td></tr>
+            <tr><td>2020</td><td>40.2</td><td>8.9</td></tr>
+            <tr><td>2022</td><td>44.2</td><td>9.4</td></tr>
+        </table>
+        <p style="font-size:12px; color:#888;">Source: CDC YRBSS 2023; Common Sense Media 2021</p>
+    </div>
+    <div>
+        <h3>Modified Data (modified_data.csv) ★</h3>
+        <table>
+            <tr><th>Year</th><th>Sadness %</th><th>Screen hrs/day</th></tr>
+            <tr><td>2008</td><td>27.2</td><td>3.8</td></tr>
+            <tr><td>2010</td><td class="changed">32.1 ★</td><td>4.4</td></tr>
+            <tr><td>2012</td><td>29.1</td><td>5.2</td></tr>
+            <tr><td>2014</td><td>30.0</td><td>6.1</td></tr>
+            <tr><td>2016</td><td>32.8</td><td>7.2</td></tr>
+            <tr><td>2018</td><td class="changed">34.2 ★</td><td>7.7</td></tr>
+            <tr><td>2020</td><td>40.2</td><td>8.9</td></tr>
+            <tr><td>2022</td><td class="changed">40.8 ★</td><td>9.4</td></tr>
+        </table>
+        <p style="font-size:12px; color:#888;">Used in D3 charts above</p>
+    </div>
+</div>
+
+<div class="note">
+    <strong>Declared modifications (★):</strong><br>
+    1. 2010 sadness: 28.5 → 32.1 &nbsp;(inflated baseline to shrink apparent total growth)<br>
+    2. 2018 sadness: 36.7 → 34.2 &nbsp;(deflated mid-point to flatten the acceleration visible in real data)<br>
+    3. 2022 sadness: 44.2 → 40.8 &nbsp;(deflated endpoint, cuts total increase from 15.7 to 8.7 percentage points)<br>
+    <em>Narrative goal: make the upward trend look modest and concentrated in the COVID years, weakening the social media causation argument.</em>
+</div>
+
+
+<div id="tooltip"></div>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+
+const modifiedData = [
+    { year: 2008, sadness: 27.2, screen: 3.8 },
+    { year: 2010, sadness: 32.1, screen: 4.4 },
+    { year: 2012, sadness: 29.1, screen: 5.2 },
+    { year: 2014, sadness: 30.0, screen: 6.1 },
+    { year: 2016, sadness: 32.8, screen: 7.2 },
+    { year: 2018, sadness: 34.2, screen: 7.7 },
+    { year: 2020, sadness: 40.2, screen: 8.9 },
+    { year: 2022, sadness: 40.8, screen: 9.4 }
+];
+
+const floridaData = [
+    { year: 2000, deaths: 693 }, { year: 2001, deaths: 705 },
+    { year: 2002, deaths: 680 }, { year: 2003, deaths: 645 },
+    { year: 2004, deaths: 601 }, { year: 2005, deaths: 521 },
+    { year: 2006, deaths: 552 }, { year: 2007, deaths: 612 },
+    { year: 2008, deaths: 694 }, { year: 2009, deaths: 699 },
+    { year: 2010, deaths: 664 }, { year: 2011, deaths: 621 },
+    { year: 2012, deaths: 645 }, { year: 2013, deaths: 590 },
+    { year: 2014, deaths: 537 }
+];
+
+const tip = d3.select("#tooltip");
+
+function showTip(e, html) {
+    tip.style("display", "block").html(html);
+}
+function moveTip(e) {
+    tip.style("left", (e.clientX + 12) + "px").style("top", (e.clientY - 30) + "px");
+}
+function hideTip() {
+    tip.style("display", "none");
+}
+
+function drawChart(containerId, data, cfg) {
+    const svgW = cfg.w || 680;
+    const svgH = cfg.h || 370;
+    const m = { top: 20, right: 68, bottom: 48, left: 64 };
+    const W = svgW - m.left - m.right;
+    const H = svgH - m.top - m.bottom;
+
+    const rows = data.filter(function(d) { return d.year >= cfg.x0 && d.year <= cfg.x1; });
+
+    const svg = d3.select(containerId).append("svg")
+        .attr("width", svgW)
+        .attr("height", svgH);
+    const g = svg.append("g").attr("transform", "translate(" + m.left + "," + m.top + ")");
+
+    const x  = d3.scaleLinear().domain([cfg.x0, cfg.x1]).range([0, W]);
+    const yL = d3.scaleLinear().domain([cfg.yL0, cfg.yL1]).range([H, 0]);
+    const yR = d3.scaleLinear().domain([cfg.yR0, cfg.yR1]).range([H, 0]);
+
+    g.selectAll(".gl").data(yL.ticks(5)).enter().append("line")
+        .attr("class", "grid-line")
+        .attr("x1", 0).attr("x2", W)
+        .attr("y1", function(d) { return yL(d); })
+        .attr("y2", function(d) { return yL(d); });
+
+    g.append("g").attr("transform", "translate(0," + H + ")").attr("class", "axis")
+        .call(d3.axisBottom(x).tickFormat(d3.format("d")).ticks(5));
+    g.append("g").attr("class", "axis")
+        .call(d3.axisLeft(yL).tickFormat(function(d) { return d + "%"; }).ticks(5));
+    g.append("g").attr("class", "axis").attr("transform", "translate(" + W + ",0)")
+        .call(d3.axisRight(yR).tickFormat(function(d) { return d + "h"; }).ticks(5));
+
+    g.append("text").attr("transform", "rotate(-90)").attr("x", -H / 2).attr("y", -50)
+        .attr("text-anchor", "middle").style("font-size", "11px").style("fill", cfg.c1)
+        .text("% Teens \u2014 Persistent Sadness");
+    g.append("text").attr("transform", "translate(" + (W + 62) + "," + (H / 2) + ") rotate(90)")
+        .attr("text-anchor", "middle").style("font-size", "11px").style("fill", cfg.c2)
+        .text("Daily Screen Time (hrs)");
+    g.append("text").attr("x", W / 2).attr("y", H + 40).attr("text-anchor", "middle")
+        .style("font-size", "11px").text("Year");
+
+    g.append("path").datum(rows)
+        .attr("fill", cfg.c1).attr("fill-opacity", 0.07)
+        .attr("d", d3.area()
+            .x(function(d) { return x(d.year); })
+            .y0(H)
+            .y1(function(d) { return yL(d.sadness); }));
+    g.append("path").datum(rows)
+        .attr("fill", "none").attr("stroke", cfg.c1).attr("stroke-width", 2.4)
+        .attr("d", d3.line()
+            .x(function(d) { return x(d.year); })
+            .y(function(d) { return yL(d.sadness); }));
+    g.append("path").datum(rows)
+        .attr("fill", "none").attr("stroke", cfg.c2).attr("stroke-width", 2.2)
+        .attr("stroke-dasharray", "6,3")
+        .attr("d", d3.line()
+            .x(function(d) { return x(d.year); })
+            .y(function(d) { return yR(d.screen); }));
+
+    g.selectAll(".d1").data(rows).enter().append("circle").attr("class", "d1")
+        .attr("cx", function(d) { return x(d.year); })
+        .attr("cy", function(d) { return yL(d.sadness); })
+        .attr("r", 5).attr("fill", cfg.c1).attr("stroke", "#fff").attr("stroke-width", 2)
+        .on("mouseover", function(e, d) {
+            showTip(e, "<b>" + d.year + "</b><br>Sadness: " + d.sadness + "%<br>Screen: " + d.screen + " hrs/day");
+        })
+        .on("mousemove", moveTip)
+        .on("mouseout", hideTip);
+    g.selectAll(".d2").data(rows).enter().append("circle").attr("class", "d2")
+        .attr("cx", function(d) { return x(d.year); })
+        .attr("cy", function(d) { return yR(d.screen); })
+        .attr("r", 5).attr("fill", cfg.c2).attr("stroke", "#fff").attr("stroke-width", 2)
+        .on("mouseover", function(e, d) {
+            showTip(e, "<b>" + d.year + "</b><br>Sadness: " + d.sadness + "%<br>Screen: " + d.screen + " hrs/day");
+        })
+        .on("mousemove", moveTip)
+        .on("mouseout", hideTip);
+
+    const lg = g.append("g").attr("transform", "translate(" + (W - 190) + ",4)");
+    lg.append("line").attr("x2", 16).attr("y1", 8).attr("y2", 8).attr("stroke", cfg.c1).attr("stroke-width", 2.4);
+    lg.append("circle").attr("cx", 8).attr("cy", 8).attr("r", 4).attr("fill", cfg.c1);
+    lg.append("text").attr("x", 22).attr("y", 12).style("font-size", "11px").text("Sadness % (L)");
+    lg.append("line").attr("x2", 16).attr("y1", 26).attr("y2", 26).attr("stroke", cfg.c2).attr("stroke-width", 2.2).attr("stroke-dasharray", "6,3");
+    lg.append("circle").attr("cx", 8).attr("cy", 26).attr("r", 4).attr("fill", cfg.c2);
+    lg.append("text").attr("x", 22).attr("y", 30).style("font-size", "11px").text("Screen Time (R)");
+}
+
+// deceptive — truncated axes, cherry-picked 2014 start
+drawChart("#deceptive-chart", modifiedData, {
+    x0: 2014, x1: 2022, yL0: 30, yL1: 43, yR0: 6.0, yR1: 10.2,
+    c1: "#c0392b", c2: "#d35400"
+});
+
+// ethical — zero baseline, full range 2008-2022
+drawChart("#ethical-chart", modifiedData, {
+    x0: 2008, x1: 2022, yL0: 0, yL1: 60, yR0: 0, yR1: 13,
+    c1: "#2980b9", c2: "#16a085"
+});
+
+// side-by-side smaller
+drawChart("#compare-dec", modifiedData, {
+    x0: 2014, x1: 2022, yL0: 30, yL1: 43, yR0: 6.0, yR1: 10.2,
+    c1: "#c0392b", c2: "#d35400", w: 440, h: 280
+});
+drawChart("#compare-eth", modifiedData, {
+    x0: 2008, x1: 2022, yL0: 0, yL1: 60, yR0: 0, yR1: 13,
+    c1: "#2980b9", c2: "#16a085", w: 440, h: 280
+});
+
+// toggle chart
+(function() {
+    const dec = {
+        x0: 2014, x1: 2022, yL0: 30, yL1: 43, yR0: 6.0, yR1: 10.2,
+        c1: "#c0392b", c2: "#d35400",
+        title: "Skyrocketing Screen Time Linked to Teen Mental Health Crisis (2014\u20132022)"
+    };
+    const eth = {
+        x0: 2008, x1: 2022, yL0: 0, yL1: 60, yR0: 0, yR1: 13,
+        c1: "#2980b9", c2: "#16a085",
+        title: "Social Media Screen Time and Teen Sadness Rates, 2008\u20132022 (Correlation Only)"
+    };
+
+    let mode = "dec";
+    const svgW = 680, svgH = 370;
+    const m = { top: 28, right: 68, bottom: 48, left: 64 };
+    const W = svgW - m.left - m.right;
+    const H = svgH - m.top - m.bottom;
+
+    const svg = d3.select("#toggle-chart").append("svg").attr("width", svgW).attr("height", svgH);
+    const g = svg.append("g").attr("transform", "translate(" + m.left + "," + m.top + ")");
+
+    const titleEl = g.append("text").attr("x", W / 2).attr("y", -8)
+        .attr("text-anchor", "middle").style("font-size", "13px").style("font-weight", "600");
+
+    const x  = d3.scaleLinear().range([0, W]);
+    const yL = d3.scaleLinear().range([H, 0]);
+    const yR = d3.scaleLinear().range([H, 0]);
+
+    const gX  = g.append("g").attr("class", "axis").attr("transform", "translate(0," + H + ")");
+    const gYL = g.append("g").attr("class", "axis");
+    const gYR = g.append("g").attr("class", "axis").attr("transform", "translate(" + W + ",0)");
+
+    const areaPath = g.append("path").attr("fill-opacity", 0.07);
+    const sadPath  = g.append("path").attr("fill", "none").attr("stroke-width", 2.4);
+    const scrPath  = g.append("path").attr("fill", "none").attr("stroke-width", 2.2).attr("stroke-dasharray", "6,3");
+    const dotsG    = g.append("g");
+
+    g.append("text").attr("x", W / 2).attr("y", H + 40)
+        .attr("text-anchor", "middle").style("font-size", "11px").text("Year");
+
+    function update(cfg, animate) {
+        const t = d3.transition().duration(animate ? 850 : 0).ease(d3.easeCubicInOut);
+        const rows = modifiedData.filter(function(d) { return d.year >= cfg.x0 && d.year <= cfg.x1; });
+
+        x.domain([cfg.x0, cfg.x1]);
+        yL.domain([cfg.yL0, cfg.yL1]);
+        yR.domain([cfg.yR0, cfg.yR1]);
+
+        gX.transition(t).call(d3.axisBottom(x).tickFormat(d3.format("d")).ticks(5));
+        gYL.transition(t).call(d3.axisLeft(yL).tickFormat(function(d) { return d + "%"; }).ticks(5));
+        gYR.transition(t).call(d3.axisRight(yR).tickFormat(function(d) { return d + "h"; }).ticks(5));
+
+        areaPath.datum(rows).transition(t).attr("fill", cfg.c1).attr("d",
+            d3.area()
+                .x(function(d) { return x(d.year); })
+                .y0(H)
+                .y1(function(d) { return yL(d.sadness); }));
+        sadPath.datum(rows).transition(t).attr("stroke", cfg.c1).attr("d",
+            d3.line()
+                .x(function(d) { return x(d.year); })
+                .y(function(d) { return yL(d.sadness); }));
+        scrPath.datum(rows).transition(t).attr("stroke", cfg.c2).attr("d",
+            d3.line()
+                .x(function(d) { return x(d.year); })
+                .y(function(d) { return yR(d.screen); }));
+        titleEl.transition(t).style("fill", cfg.c1).text(cfg.title);
+
+        dotsG.selectAll("*").remove();
+        setTimeout(function() {
+            dotsG.selectAll(".td1").data(rows).enter().append("circle")
+                .attr("cx", function(d) { return x(d.year); })
+                .attr("cy", function(d) { return yL(d.sadness); })
+                .attr("r", 5).attr("fill", cfg.c1).attr("stroke", "#fff").attr("stroke-width", 2)
+                .on("mouseover", function(e, d) {
+                    showTip(e, "<b>" + d.year + "</b><br>Sadness: " + d.sadness + "%<br>Screen: " + d.screen + " hrs/day");
+                })
+                .on("mousemove", moveTip)
+                .on("mouseout", hideTip);
+            dotsG.selectAll(".td2").data(rows).enter().append("circle")
+                .attr("cx", function(d) { return x(d.year); })
+                .attr("cy", function(d) { return yR(d.screen); })
+                .attr("r", 5).attr("fill", cfg.c2).attr("stroke", "#fff").attr("stroke-width", 2)
+                .on("mouseover", function(e, d) {
+                    showTip(e, "<b>" + d.year + "</b><br>Sadness: " + d.sadness + "%<br>Screen: " + d.screen + " hrs/day");
+                })
+                .on("mousemove", moveTip)
+                .on("mouseout", hideTip);
+        }, animate ? 860 : 0);
+    }
+
+    update(dec, false);
+
+    d3.select("#toggle-btn").on("click", function() {
+        mode = mode === "dec" ? "eth" : "dec";
+        update(mode === "dec" ? dec : eth, true);
+        this.textContent = mode === "dec" ? "Switch to Ethical View" : "Switch to Deceptive View";
+        this.style.background = mode === "dec" ? "#c0392b" : "#2980b9";
+    });
+}());
+
+
+// florida ethical area chart
+(function() {
+    const svgW = 580, svgH = 340;
+    const m = { top: 16, right: 24, bottom: 48, left: 68 };
+    const W = svgW - m.left - m.right;
+    const H = svgH - m.top - m.bottom;
+
+    const svg = d3.select("#florida-chart").append("svg").attr("width", svgW).attr("height", svgH);
+    const g = svg.append("g").attr("transform", "translate(" + m.left + "," + m.top + ")");
+
+    const x = d3.scaleLinear().domain([2000, 2014]).range([0, W]);
+    const y = d3.scaleLinear().domain([0, 820]).range([H, 0]);
+
+    g.selectAll(".gl").data(y.ticks(6)).enter().append("line")
+        .attr("class", "grid-line").attr("x1", 0).attr("x2", W)
+        .attr("y1", function(d) { return y(d); })
+        .attr("y2", function(d) { return y(d); });
+
+    g.append("g").attr("transform", "translate(0," + H + ")").attr("class", "axis")
+        .call(d3.axisBottom(x).tickFormat(d3.format("d")).ticks(8));
+    g.append("g").attr("class", "axis").call(d3.axisLeft(y).ticks(6));
+
+    g.append("path").datum(floridaData)
+        .attr("fill", "#2980b9").attr("fill-opacity", 0.15)
+        .attr("d", d3.area()
+            .x(function(d) { return x(d.year); })
+            .y0(H)
+            .y1(function(d) { return y(d.deaths); }));
+    g.append("path").datum(floridaData)
+        .attr("fill", "none").attr("stroke", "#2980b9").attr("stroke-width", 2.4)
+        .attr("d", d3.line()
+            .x(function(d) { return x(d.year); })
+            .y(function(d) { return y(d.deaths); }));
+
+    g.selectAll(".fd").data(floridaData).enter().append("circle")
+        .attr("cx", function(d) { return x(d.year); })
+        .attr("cy", function(d) { return y(d.deaths); })
+        .attr("r", 5).attr("fill", "#2980b9").attr("stroke", "#fff").attr("stroke-width", 2)
+        .on("mouseover", function(e, d) {
+            showTip(e, "<b>" + d.year + "</b><br>Deaths: " + d.deaths + (d.year === 2005 ? " \u2014 SYG enacted" : ""));
+        })
+        .on("mousemove", moveTip)
+        .on("mouseout", hideTip);
+
+    g.append("line")
+        .attr("x1", x(2005)).attr("x2", x(2005)).attr("y1", 0).attr("y2", H)
+        .attr("stroke", "#e74c3c").attr("stroke-width", 1.8).attr("stroke-dasharray", "5,4");
+    g.append("text").attr("x", x(2005) + 5).attr("y", 18)
+        .style("font-size", "11px").style("fill", "#e74c3c")
+        .text("Stand Your Ground enacted (2005)");
+    g.append("text").attr("x", x(2009)).attr("y", y(730))
+        .style("font-size", "11px").style("fill", "#555").attr("text-anchor", "middle")
+        .text("\u2191 deaths rose after 2005");
+
+    g.append("text").attr("transform", "rotate(-90)").attr("x", -H / 2).attr("y", -54)
+        .attr("text-anchor", "middle").style("font-size", "11px").text("Gun-related deaths (Florida)");
+    g.append("text").attr("x", W / 2).attr("y", H + 40)
+        .attr("text-anchor", "middle").style("font-size", "11px").text("Year");
+}());
+
+</script>
+</body>
+</html>
