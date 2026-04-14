@@ -23,9 +23,7 @@
         table th { background: #1e2a38; color: #fff; padding: 6px 12px; text-align: left; }
         table td { padding: 6px 12px; border-bottom: 1px solid #eee; }
         td.changed { background: #fff3cd; font-weight: bold; }
-        .note { background: #fff8e1; border-left: 3px solid #f0ad4e; padding: 10px 14px; margin: 12px 0; font-size: 14px; max-width: 720px; }
-        .manip { background: #fff0f0; border-left: 3px solid #c0392b; padding: 10px 14px; margin: 12px 0; font-size: 14px; max-width: 720px; }
-        #tooltip { position: fixed; background: rgba(0,0,0,0.8); color: #fff; padding: 7px 11px; font-size: 12px; border-radius: 3px; pointer-events: none; display: none; z-index: 999; }
+#tooltip { position: fixed; background: rgba(0,0,0,0.8); color: #fff; padding: 7px 11px; font-size: 12px; border-radius: 3px; pointer-events: none; display: none; z-index: 999; }
         .axis text { font-size: 11px; font-family: Arial, sans-serif; }
         .grid-line { stroke: #eee; stroke-width: 1; }
         button { padding: 8px 20px; cursor: pointer; font-size: 13px; border: none; color: #fff; background: #c0392b; border-radius: 3px; margin: 8px 0; }
@@ -42,13 +40,12 @@
 <h2>The Misleading Narrative</h2>
 
 
-<p>Whenever there is a discussion about teen mental health problems, almost every time social media and smartphones
-are associated as the primary reason. However, the data begs to differ from this opinion</p>
+<p>Whenever there is a discussion about teen mental health problems, almost every time social media and smartphones are associated as the primary reason. Politicians cite it, parents worry about it, and news coverage treats it as basically settled. However, the data begs to differ from this opinion.</p>
 
-<p>The data does show that teen sadness went up over this period. But a rise in sadness and screen time being the cause of that rise are two very different things. The charts above are designed to make it look like there's an obvious link, and the sections below show how that gets done.</p>
+<p>The data does show that teen sadness went up over this period. But a rise in sadness and screen time being the cause of that rise are two very different things. Headlines don't usually make that distinction. The charts above are designed to make it look like there's an obvious link, and the sections below show how that gets done.</p>
 
 <figure style="max-width:640px; margin:16px 0;">
-    <img src="images/fig1.jpg" alt="Dual-axis line chart: screen time and teen sadness, 2008-2022" style="max-width:100%; display:block; border:1px solid #ddd;">
+    <img src="images/fig1.png" alt="Dual-axis line chart: screen time and teen sadness, 2008-2022" style="max-width:100%; display:block; border:1px solid #ddd;">
     <figcaption style="font-size:12px; color:#666; margin-top:6px;"><em>Figure 1. Daily screen time (hrs) and teen sadness rate (%), 2008–2022. Source: CDC YRBSS, 2023; Common Sense Media Annual Census.</em></figcaption>
 </figure>
 
@@ -57,14 +54,14 @@ are associated as the primary reason. However, the data begs to differ from this
 <p>Another issue is how screen time even gets measured. It's mostly self-reported, meaning teenagers are asked to estimate their own usage. When that gets compared to actual phone logs, people overestimate by 30 to 40 percent on average. That means the x-axis on basically all of these studies is potentially wrong by a third. A regression line on bad input is still a bad regression line, regardless of how tight it looks.</p>
 
 <figure style="max-width:640px; margin:16px 0;">
-    <img src="images/fig2.jpg" alt="Scatter plot with regression line: screen time vs teen sadness by year" style="max-width:100%; display:block; border:1px solid #ddd;">
+    <img src="images/fig2.png" alt="Scatter plot with regression line: screen time vs teen sadness by year" style="max-width:100%; display:block; border:1px solid #ddd;">
     <figcaption style="font-size:12px; color:#666; margin-top:6px;"><em>Figure 2. Screen time vs. teen sadness across survey years, with regression line (R&sup2; = 0.61). Source: CDC YRBSS; National Youth Psychology Consortium, 2022.</em></figcaption>
 </figure>
 
 <p>The gender split in Figure 3 is the one thing in this dataset that's harder to argue away. Female sadness went from 34% to 57% between 2008 and 2022, a 23 point jump. Male rates went up about 9 points over the same stretch. Something is clearly going on differently for girls. Whether that's social media, image-based platforms, cyberbullying, or just differences in how mental health gets reported, the data doesn't say. Jumping from "these two things both went up" to "one caused the other" and building policy around that is a pretty big leap.</p>
 
 <figure style="max-width:640px; margin:16px 0;">
-    <img src="images/fig3.jpg" alt="Two-line chart: teen sadness by gender, 2008-2022" style="max-width:100%; display:block; border:1px solid #ddd;">
+    <img src="images/fig3.png" alt="Two-line chart: teen sadness by gender, 2008-2022" style="max-width:100%; display:block; border:1px solid #ddd;">
     <figcaption style="font-size:12px; color:#666; margin-top:6px;"><em>Figure 3. Teen sadness by gender, 2008–2022. Source: CDC YRBSS; National Youth Wellbeing Index, Cycle 4.</em></figcaption>
 </figure>
 
@@ -80,14 +77,12 @@ are associated as the primary reason. However, the data begs to differ from this
     <div style="font-size:11px; color:#999; margin-top:6px;">Data: CDC YRBSS (modified); Common Sense Media Census</div>
 </div>
 
-<div class="manip">
-    <strong>Manipulation techniques:</strong><br>
-    1. <b>Truncated y axes</b>: sadness axis starts at 30%, not 0. Makes an 8 point rise look like near doubling.<br>
-    2. <b>Synchronized dual axis scaling</b>: scales are chosen so both lines visually overlap, implying tight causation.<br>
-    3. <b>Cherry picked time window</b>: starts at 2014, hiding the flat 2008 to 2014 period that weakens the trend.<br>
-    4. <b>Causal title</b>: "Linked to" implies causation from correlational data.<br>
-    5. <b>Alarming colors</b>: red and orange prime the reader toward danger before they read a single number.
-</div>
+<p><strong>Manipulation techniques:</strong><br>
+1. <b>Truncated y axes</b>: sadness axis starts at 30%, not 0. Makes an 8 point rise look like near doubling.<br>
+2. <b>Synchronized dual axis scaling</b>: scales are chosen so both lines visually overlap, implying tight causation.<br>
+3. <b>Cherry picked time window</b>: starts at 2014, hiding the flat 2008 to 2014 period that weakens the trend.<br>
+4. <b>Causal title</b>: "Linked to" implies causation from correlational data.<br>
+5. <b>Alarming colors</b>: red and orange prime the reader toward danger before they read a single number.</p>
 
 
 <h2>Ethical Chart (D3)</h2>
@@ -202,13 +197,11 @@ are associated as the primary reason. However, the data begs to differ from this
     </div>
 </div>
 
-<div class="note">
-    <strong>Declared modifications (★):</strong><br>
-    1. 2010 sadness: 28.5 → 32.1 &nbsp;(inflated baseline to shrink apparent total growth)<br>
-    2. 2018 sadness: 36.7 → 34.2 &nbsp;(deflated mid-point to flatten the acceleration visible in real data)<br>
-    3. 2022 sadness: 44.2 → 40.8 &nbsp;(deflated endpoint, cuts total increase from 15.7 to 8.7 percentage points)<br>
-    <em>Narrative goal: make the upward trend look modest and concentrated in the COVID years, weakening the social media causation argument.</em>
-</div>
+<p><strong>Declared modifications (★):</strong><br>
+1. 2010 sadness: 28.5 → 32.1 &nbsp;(inflated baseline to shrink apparent total growth)<br>
+2. 2018 sadness: 36.7 → 34.2 &nbsp;(deflated mid-point to flatten the acceleration visible in real data)<br>
+3. 2022 sadness: 44.2 → 40.8 &nbsp;(deflated endpoint, cuts total increase from 15.7 to 8.7 percentage points)<br>
+<em>Narrative goal: make the upward trend look modest and concentrated in the COVID years, weakening the social media causation argument.</em></p>
 
 
 <div id="tooltip"></div>
